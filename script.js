@@ -691,10 +691,20 @@ function initGiftBox() {
                 const surpriseMessage = document.getElementById('surpriseMessage');
                 surpriseMessage.classList.add('active');
 
-                // Show "kun happy birthday" text
+                // Show "kun happy birthday" popup
                 setTimeout(() => {
-                    const kunMessage = document.getElementById('kunMessage');
-                    kunMessage.classList.add('active');
+                    const kunPopup = document.getElementById('kunPopup');
+                    kunPopup.classList.remove('hidden');
+                    kunPopup.classList.add('active');
+
+                    // Close popup on click
+                    kunPopup.addEventListener('click', function closePopup() {
+                        kunPopup.classList.remove('active');
+                        setTimeout(() => {
+                            kunPopup.classList.add('hidden');
+                        }, 500);
+                        kunPopup.removeEventListener('click', closePopup);
+                    });
                 }, 500);
 
                 // Launch fireworks
